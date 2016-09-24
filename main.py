@@ -38,11 +38,11 @@ class hit_jwts(object):
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'zh-CN,zh;q=0.8'
         }
-        # uid = input('输入你的学号')
-        # pwd = input('输入你的密码')
+        uid = input('输入你的学号')
+        pwd = input('输入你的密码')
         post_data = {
-            'usercode': '1140340116',
-            'password': 'qq963852741'
+            'usercode': uid,
+            'password': pwd
         }
         r = self.s.post(url, headers=header, data=post_data)
         if r.status_code == 200:
