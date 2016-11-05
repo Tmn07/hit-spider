@@ -3,3 +3,5 @@ pic/*
 .idea/*
 
 __pycache__/*
+
+*.pyc
