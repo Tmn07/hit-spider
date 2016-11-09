@@ -20,6 +20,8 @@ class hit_jwts(object):
             s = self.login(uid, pwd)
         else:
             s = login(uid, pwd)
+            test_url = "http://jwts.hit.edu.cn/loginCAS"
+            s.get(test_url)
         self.s = s
 
     def login(self, uid, pwd):
