@@ -15,8 +15,8 @@ header = {
 # usernama里@sam前填学号，password填密码
 post_data = {
     'action': 'login',
-    'username': '1140340108@sam',
-    'password': '020552',
+    'username': 'xxx@sam',
+    'password': 'xxx',
     'ac_id': '1',
     'type': '1',
     'wbaredirect': '',
