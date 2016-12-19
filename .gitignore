@@ -5,3 +5,7 @@ pic/*
 __pycache__/*
 
 *.pyc
+
+photo.jpg
+
+score.html

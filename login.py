@@ -16,7 +16,7 @@ def login(uid, pwd):
 
     s = requests.Session()
 
-    r = s.get(url)
+    r = s.get(url, timeout=None)
 
     soup = BeautifulSoup(r.text, 'lxml')
 
@@ -43,7 +43,16 @@ def login(uid, pwd):
         'Referer': 'https://ids.hit.edu.cn/authserver/login',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36'
     }
-
+    # header = {
+    #     'Accept':'*/*',
+    #     'Accept-Encoding':'gzip, deflate, sdch',
+    #     'Accept-Language':'zh-CN,zh;q=0.8',
+    #     'Connection':'keep-alive',
+    #     'Host':'jwts.hit.edu.cn',
+    #     'Cookie':'JSESSIONID=xkQLYT6Khvy59vfp1fyx3dXh1htt9v7h959sxLmhLYh0bcJxvGcn!-1677291570; clwz_blc_pst=16781484.23323; name=value',
+    #     'Referer':'http//:jwts.hit.edu.cn/',
+    #     'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    # }
     # 发送登录信息
     r = s.post('https://ids.hit.edu.cn/authserver/login', headers=header, data=hidden_data)
 
@@ -63,11 +72,20 @@ def login(uid, pwd):
 def get_login_style():
     # 前往页面，查看教务处登录方式
     url = "http://jwts.hit.edu.cn/"
-    r = requests.get(url)
+    data = {
+        'Accept':'*/*',
+        'Accept-Encoding':'gzip, deflate, sdch',
+        'Accept-Language':'zh-CN,zh;q=0.8',
+        'Connection':'keep-alive',
+        'Host':'jwts.hit.edu.cn',
+        'Referer':'http//:jwts.hit.edu.cn/',
+        'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
+    }
+    r = requests.get(url,headers=data)
     soup = BeautifulSoup(r.text, 'lxml')
 
     login_url = soup.find('a', id='dl')['href']
-
+    # http://jwts.hit.edu.cn/loginCAS
     if login_url == '/loginLdapQian':
         # 旧版教务处登录
         return 0
@@ -78,7 +96,7 @@ def get_login_style():
 
 if __name__ == '__main__':
     # 第一个参数学号，第一个参数密码
-    s = login('xxx', 'xxx')
+    s = login('xxxx', 'xxxx')
 
     # 前往其他网站，验证登录
     test_url = "https://cms.hit.edu.cn/my/"
