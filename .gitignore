@@ -8,4 +8,6 @@ __pycache__/*
 
 photo.jpg
 
-score.html
+*.html
+*.txt
+
