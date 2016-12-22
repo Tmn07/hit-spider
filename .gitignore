@@ -5,3 +5,6 @@ pic/*
 __pycache__/*
 
 *.pyc
+
+*.html
+*.txt

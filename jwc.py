@@ -2,7 +2,7 @@
 import requests
 from bs4 import BeautifulSoup
 from login import *
-
+import time
 
 class hit_jwts(object):
     """ 程序主类
@@ -84,6 +84,29 @@ class hit_jwts(object):
         r = self.s.post(url,data)
         return r
 
+    def cjxxview(self):
+        filep = open("cjxx.txt","w")
+        start_id = 6666780
+        baseurl = "http://jwts.hit.edu.cn/cjcx/queryCjxxView?id="
+        f = 0
+        while f<30:
+            url = baseurl+str(start_id)
+            r = self.s.get(url)
+            if r.headers.get('Content-Length',0) == "1842":
+                print start_id,"null"
+                f+=1
+                start_id += 1
+                time.sleep(2)
+                filep.write(str(start_id)+"\tnull\n")
+                continue
+            soup = BeautifulSoup(r.content,"lxml")
+            data = soup.find_all('td')
+            print start_id,data[0],data[3],data[7]
+            filep.write(str(start_id)+str(data[0])+str(data[3])+str(data[7])+"\n")
+            start_id += 1
+            time.sleep(2)
+
+
     def tuike(self,cid="",lb=""):
         url = "http://jwts.hit.edu.cn/xsxk/saveXstk"
         header = {
@@ -115,7 +138,8 @@ class hit_jwts(object):
 
 if __name__ == '__main__':
     # 第一个参数学号，第二个参数密码
-    c = hit_jwts('xxx', 'xxxx')
+    c = hit_jwts('xxxx', 'xxxx')
+    c.cjxxview()
     # c.score()
     # c.getPhoto('1140340116')
 
