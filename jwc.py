@@ -22,6 +22,7 @@ class hit_jwts(object):
             s = login(uid, pwd)
             test_url = "http://jwts.hit.edu.cn/loginCAS"
             s.get(test_url)
+            print("test ok")
         self.s = s
 
     def login(self, uid, pwd):
@@ -56,12 +57,16 @@ class hit_jwts(object):
         print(filename + ' write down ok')
 
     def score(self):
+        # post_data = {
+        #     'pageNo': 1,
+        #     'pageSize': 250,
+        #     'pageCount': 1
+        # }
         post_data = {
-            'pageNo': 1,
-            'pageSize': 250,
-            'pageCount': 1
+            'pageXnxq': "2015-20161",
         }
         r = self.s.post('http://jwts.hit.edu.cn/cjcx/queryQmcj', data=post_data)
+        # r = self.s.post('http://jwts.hit.edu.cn/cjcx/queryQmcj', headers=header, data=post_data)
         if r.status_code == 200:
             print('get score ok')
             self.write_down(r.content, 'score.html')
