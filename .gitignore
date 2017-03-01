@@ -6,6 +6,6 @@ __pycache__/*
 
 *.pyc
 
+*.html
+*.txt
 photo.jpg
-
-score.html
