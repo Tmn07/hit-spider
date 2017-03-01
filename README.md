@@ -2,7 +2,7 @@
 
 ## 目录结构
 
-- hitwlan.py 登陆HIT-WLAN的脚本(需要自己的账号密码..)
+- hitwlan.py 登陆HIT-WLAN的脚本(需要自己的账号密码..不是test)
 - jwc.py 教务处上搞事情的脚本
   - 爬成绩
   - 爬照片
