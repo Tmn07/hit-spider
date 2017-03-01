@@ -1,9 +1,10 @@
 # coding=utf-8
 import requests
+from bs4 import BeautifulSoup
 
 s = requests.Session()
 
-url = 'http://192.168.52.11/cgi-bin/srun_portal'
+url = 'http://192.168.52.11/srun_portal_pc.php?ac_id=1&'
 
 header = {
     'Host': '192.168.52.11',
@@ -15,18 +16,25 @@ header = {
 # usernama里@sam前填学号，password填密码
 post_data = {
     'action': 'login',
-    'username': 'xxx@sam',
+    'username': 'xxx',
     'password': 'xxx',
     'ac_id': '1',
-    'type': '1',
-    'wbaredirect': '',
-    'mac': '',
-    'user_ip': '',
-    'vrf_id': '0'
+    'user_ip':'',
+	'nas_ip':'',
+	'user_mac':'',
+	'url':'',
+	'save_me':'1'
 }
 
 r = s.post(url, headers=header, data=post_data)
+try:
+	soup = BeautifulSoup(r.text,"lxml")
+	fs = soup.find("fieldset")
+	print fs.find("p").text
+except Exception, e:
+	print "login ok"
 
-print(r.text)
+
+# print(r.text)
 
 # input()
