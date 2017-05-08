@@ -11,3 +11,5 @@ photo.jpg
 *.html
 *.txt
 
+photo.jpg
+config.py
