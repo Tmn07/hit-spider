@@ -1,6 +1,7 @@
 # coding=utf-8
 import requests
 from bs4 import BeautifulSoup
+from config import *
 
 s = requests.Session()
 
@@ -16,8 +17,8 @@ header = {
 # usernama里@sam前填学号，password填密码
 post_data = {
     'action': 'login',
-    'username': 'xxx',
-    'password': 'xxx',
+    'username': username,
+    'password': password,
     'ac_id': '1',
     'user_ip':'',
 	'nas_ip':'',

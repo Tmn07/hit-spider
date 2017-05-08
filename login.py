@@ -1,7 +1,10 @@
 # coding=utf-8
-
+import re
 import requests
 from bs4 import BeautifulSoup
+
+from config import *
+from somersa import rsa
 
 def write_down(data, filename='test.html'):
     fp = open(filename, 'w')
@@ -68,6 +71,14 @@ def login(uid, pwd):
 
     return s
 
+def old_login(uid, pwd):
+    f=open("test.html")
+    data=f.read()
+    n = eval(re.findall("KeyPair(.*?);", data)[0])[2]
+    post_data = {}
+    post_data['username'] =  rsa(uid, n)
+    post_data['password'] = rsa(pwd, n)
+    print post_data
 
 def get_login_style():
     # 前往页面，查看教务处登录方式
@@ -88,20 +99,23 @@ def get_login_style():
     # http://jwts.hit.edu.cn/loginCAS
     if login_url == '/loginLdapQian':
         # 旧版教务处登录
+        print "old"
         return 0
     else:
         # 新版统一认证登录？
+        print "new"
         return 1
 
 
 if __name__ == '__main__':
     # 第一个参数学号，第一个参数密码
-    s = login('xxxx', 'xxxx')
+    # s = login(username, password)
 
     # 前往其他网站，验证登录
-    test_url = "https://cms.hit.edu.cn/my/"
-    r = s.get(test_url)
+    # test_url = "https://cms.hit.edu.cn/my/"
+    # r = s.get(test_url, verify=False)
 
-    write_down(r.content)
+    # write_down(r.content)
 
-    print (get_login_style())
+    # print (get_login_style())
+    old_login(username, password)

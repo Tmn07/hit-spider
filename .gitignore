@@ -9,3 +9,4 @@ __pycache__/*
 *.html
 *.txt
 photo.jpg
+config.py

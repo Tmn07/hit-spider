@@ -3,8 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 from login import *
 import time
-import MySQLdb
 
+from config import *
 
 
 class hit_jwts(object):
@@ -118,6 +118,7 @@ class hit_jwts(object):
 
 
     def gay(self):
+        import MySQLdb
         db = MySQLdb.connect("127.0.0.1","root","root","jwts")
 
         # 使用cursor()方法获取操作游标 
@@ -199,12 +200,12 @@ class hit_jwts(object):
 
 if __name__ == '__main__':
     # 第一个参数学号，第二个参数密码
-    c = hit_jwts('xxx', 'xxx')
+    c = hit_jwts(username, password)
     # c.cjxxview()
-    c.gay()
+    # c.gay()
 
     # c.score()
-    # c.getPhoto('1140340116')
+    c.getPhoto('1140340116')
 
     # c.xuanke("2016-2017-2-13SE28001200-001","xx")
     # c.xuanke("2016-2017-1-GO00300400-001","qxrx")
