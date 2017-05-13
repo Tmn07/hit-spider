@@ -17,8 +17,8 @@ header = {
 # usernama里@sam前填学号，password填密码
 post_data = {
     'action': 'login',
-    'username': username,
-    'password': password,
+    'username': netuid,
+    'password': netpwd,
     'ac_id': '1',
     'user_ip':'',
 	'nas_ip':'',

@@ -22,5 +22,7 @@ def rsa(data, n):
     result = modpow(str_to_int(data), long(e, 16), long(n, 16))
     return hex(result)[2:-1]
 
-# n = '98289d260169a74317dd3ad91b831623e5589a344848b0ccceb74542212fc2390a13d8f15b037c56eabf2a4ef7b1e06c32c9f6280288373ee23efc87d350056b'  
-# print rsa("xxx", n)
+
+n = '8f4be304d041801171659fbe7e4e3b490d680ff0fc23c18f41d56a5b8b4db90761b9ddfc688b4a7addee4b1553e3d3809e399a095511c32c85e9046acad7cf67'
+print rsa("1140340116", n)
+print rsa("xxxx", n)
