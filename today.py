@@ -7,6 +7,7 @@ Created on Fri Dec 25 19:45:39 2015
 import urllib2
 import random
 import time
+import re
 from bs4 import BeautifulSoup
 
 def get_recommend_url(page_url):
@@ -28,11 +29,8 @@ def get_recommend_count(page_url):
     page = urllib2.urlopen(request)
     soup = BeautifulSoup(page, 'html.parser')
     iframe_url = 'http://today.hit.edu.cn' + soup.find_all('center')[1].iframe['src']
-    iframe_page = urllib2.urlopen(iframe_url)
-    iframe_code = iframe_page.read()
-    string_before = '<div class="topBox ">\t\r\n\t\t'
-    string_after = '\t\r\n\t</div>'
-    recommend_count = iframe_code[iframe_code.find(string_before) + len(string_before) : iframe_code.find(string_after)]
+    iframe_code = urllib2.urlopen(iframe_url).read()
+    recommend_count = re.findall(r'(?<=\t)[1-9][0-9]{0,3}',iframe_code)[0]
     return int(recommend_count)
     
 def ip_generator():
